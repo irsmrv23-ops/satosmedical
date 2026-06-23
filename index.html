@@ -74,19 +74,20 @@
   .section-title { font-size: clamp(24px, 4.5vw, 34px); color: var(--navy); font-weight: 700; margin-bottom: 12px; line-height: 1.18; }
   .section-intro { color: var(--muted); max-width: 640px; font-size: 16px; margin-bottom: 36px; }
   .svc-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-  .svc-card { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 16px; padding: 26px; text-decoration: none; background: var(--paper); transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s; position: relative; overflow: hidden; }
-  .svc-card:hover { transform: translateY(-3px); border-color: var(--teal); box-shadow: 0 14px 32px rgba(14,35,80,0.1); }
-  .svc-icon { width: 50px; height: 50px; border-radius: 13px; background: var(--teal-soft); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 16px; }
-  .svc-card h3 { font-size: 18px; color: var(--navy); margin-bottom: 7px; }
-  .svc-card p { font-size: 14px; color: var(--muted); margin-bottom: 16px; flex-grow: 1; }
-  .svc-link { font-size: 14px; font-weight: 600; color: var(--teal); display: inline-flex; align-items: center; gap: 6px; }
+  .svc-card { display: flex; flex-direction: column; align-items: center; text-align: center; border: 1px solid var(--line); border-radius: 18px; padding: 32px 24px; text-decoration: none; background: var(--paper); transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s; }
+  .svc-card:hover { transform: translateY(-4px); border-color: var(--teal); box-shadow: 0 16px 36px rgba(14,35,80,0.1); }
+  .svc-icon { width: 64px; height: 64px; border-radius: 18px; background: var(--teal-soft); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+  .svc-icon svg { width: 30px; height: 30px; color: var(--teal); }
+  .svc-card h3 { font-size: 18px; color: var(--navy); margin-bottom: 8px; }
+  .svc-card p { font-size: 14px; color: var(--muted); margin-bottom: 18px; flex-grow: 1; line-height: 1.55; }
+  .svc-link { font-size: 14px; font-weight: 600; color: var(--teal); display: inline-flex; align-items: center; gap: 6px; transition: gap 0.15s; }
   .svc-card:hover .svc-link { gap: 10px; }
 
   /* WHY */
   .why { background: var(--mist); padding: 56px 0; margin-top: 44px; }
   .why-grid { display: grid; grid-template-columns: 1fr; gap: 22px; margin-top: 28px; }
   .why-item { display: flex; gap: 14px; align-items: flex-start; }
-  .why-icon { flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; background: #fff; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: 21px; }
+  .why-icon { flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; background: var(--teal-soft); display: flex; align-items: center; justify-content: center; } .why-icon svg { width: 22px; height: 22px; color: var(--teal); }
   .why-item h3 { font-size: 16px; color: var(--navy); margin-bottom: 4px; }
   .why-item p { font-size: 14px; color: var(--muted); }
 
@@ -108,6 +109,7 @@
   .contact-row .ct b { display: block; color: var(--navy); font-size: 14px; margin-bottom: 2px; }
   .contact-row .ct, .contact-row .ct a { color: var(--muted); font-size: 14px; text-decoration: none; }
   .contact-row .ct a:hover { color: var(--teal); }
+  .contact-link:hover .ci { background: var(--teal-soft); border-color: var(--teal); }
   .map-embed { border-radius: 16px; overflow: hidden; border: 1px solid var(--line); height: 300px; background: #dde6f0; }
   .map-embed iframe { width: 100%; height: 100%; border: 0; display: block; }
 
@@ -324,10 +326,10 @@
           <span data-lang="ru">Где нас найти</span>
           <span data-lang="en">Where to find us</span>
         </h2>
-        <div class="contact-row">
+        <a class="contact-row contact-link" href="https://waze.com/ul?q=Soseaua%20Hincesti%20141%20Chisinau&navigate=yes" target="_blank" rel="noopener" style="text-decoration:none">
           <div class="ci">📍</div>
-          <div class="ct"><b><span data-lang="ro" class="show">Adresă</span><span data-lang="ru">Адрес</span><span data-lang="en">Address</span></b>Șoseaua Hîncești 141, Chișinău</div>
-        </div>
+          <div class="ct"><b><span data-lang="ro" class="show">Adresă</span><span data-lang="ru">Адрес</span><span data-lang="en">Address</span></b><span style="color:var(--teal)">Șoseaua Hîncești 141, Chișinău</span> <span style="font-size:12px;color:var(--muted)">· <span data-lang="ro" class="show">deschide în Waze</span><span data-lang="ru">открыть в Waze</span><span data-lang="en">open in Waze</span></span></div>
+        </a>
         <div class="contact-row">
           <div class="ci">📞</div>
           <div class="ct"><b><span data-lang="ro" class="show">Telefon</span><span data-lang="ru">Телефон</span><span data-lang="en">Phone</span></b><a href="tel:+37360532288">+373 60 532 288</a></div>
@@ -416,22 +418,24 @@
 </a>
 
 <script>
+  const ICONS = {"estetica": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M8 14s1.5 2 4 2 4-2 4-2\"/><circle cx=\"9\" cy=\"10\" r=\"1\"/><circle cx=\"15\" cy=\"10\" r=\"1\"/></svg>", "cosmetologie": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 21l6-6\"/><path d=\"M14 4l6 6-9 9-6 1 1-6z\"/><path d=\"M13 5l6 6\"/></svg>", "epilare": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v4M12 17v4M3 12h4M17 12h4\"/><path d=\"M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18\"/><circle cx=\"12\" cy=\"12\" r=\"2.5\"/></svg>", "remodelare": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3c-2 3-3 5-3 8a3 3 0 0 0 6 0c0-3-1-5-3-8z\"/><path d=\"M7 14c-1 2-1 4 0 6M17 14c1 2 1 4 0 6\"/></svg>", "ultrasonografie": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 12a8 8 0 0 1 16 0\"/><path d=\"M7 12a5 5 0 0 1 10 0\"/><path d=\"M10 12a2 2 0 0 1 4 0\"/><path d=\"M3 16h18\"/></svg>", "masaj": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 11c0-1 1-2 2-2s2 1 2 2M14 11c0-1 1-2 2-2s2 1 2 2\"/><path d=\"M4 13c1 4 4 6 8 6s7-2 8-6\"/><path d=\"M9 4c1 1 1 2 0 3M15 4c1 1 1 2 0 3\"/></svg>", "fizioterapie": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 12h3l2-5 4 10 2-5h7\"/></svg>", "laborator": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 3v6l-4 8a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-4-8V3\"/><path d=\"M8 3h8\"/><path d=\"M7 15h10\"/></svg>"};
   const services = [
-    { href:"estetica-faciala.html", icon:"💆", ro:{t:"Estetică facială",d:"Curățări, tratamente cu aparatură, dermapen, mezoterapie non-invazivă."}, ru:{t:"Эстетика лица",d:"Чистки, аппаратные процедуры, дермапен, безынъекционная мезотерапия."}, en:{t:"Facial aesthetics",d:"Cleansing, device treatments, dermapen, non-invasive mesotherapy."} },
-    { href:"cosmetologie.html", icon:"💉", ro:{t:"Cosmetologie",d:"Proceduri injectabile: toxină botulinică, fillere, biostimulatoare."}, ru:{t:"Косметология",d:"Инъекционные процедуры: ботулотоксин, филлеры, биостимуляторы."}, en:{t:"Cosmetology",d:"Injectable procedures: botulinum toxin, fillers, biostimulators."} },
-    { href:"epilare-laser.html", icon:"✨", ro:{t:"Epilare laser",d:"Pentru femei și bărbați, pe zone sau în pachete avantajoase."}, ru:{t:"Лазерная эпиляция",d:"Для женщин и мужчин, по зонам или в выгодных пакетах."}, en:{t:"Laser hair removal",d:"For women and men, by area or in value packages."} },
-    { href:"remodelare-corporala.html", icon:"🧖", ro:{t:"Remodelare corporală",d:"Tratamente pentru conturul corpului și fermitatea pielii."}, ru:{t:"Коррекция фигуры",d:"Процедуры для контуров тела и упругости кожи."}, en:{t:"Body contouring",d:"Treatments for body shape and skin firmness."} },
-    { href:"ultrasonografie.html", icon:"🩻", ro:{t:"Ultrasonografie",d:"Investigații ecografice pentru diagnostic precis."}, ru:{t:"УЗИ",d:"Ультразвуковая диагностика для точного обследования."}, en:{t:"Ultrasonography",d:"Ultrasound investigations for precise diagnosis."} },
-    { href:"masaj.html", icon:"👐", ro:{t:"Masaj",d:"Terapeutic, drenaj limfatic, anticelulitic și relaxare."}, ru:{t:"Массаж",d:"Лечебный, лимфодренаж, антицеллюлитный и расслабляющий."}, en:{t:"Massage",d:"Therapeutic, lymphatic drainage, anti-cellulite and relaxing."} },
-    { href:"fizioterapie.html", icon:"🔬", ro:{t:"Fizioterapie & reabilitare",d:"Recuperare după traume, dureri cronice și afecțiuni musculo-scheletale."}, ru:{t:"Физиотерапия и реабилитация",d:"Восстановление после травм, при хронической боли и заболеваниях ОДА."}, en:{t:"Physiotherapy & rehab",d:"Recovery after injury, chronic pain and musculoskeletal conditions."} },
-    { href:"laborator.html", icon:"🧪", ro:{t:"Investigații de laborator",d:"Hematologie, biochimie, imunologie, biologie moleculară, alergologie."}, ru:{t:"Лабораторные исследования",d:"Гематология, биохимия, иммунология, молекулярная биология, аллергология."}, en:{t:"Laboratory testing",d:"Haematology, biochemistry, immunology, molecular biology, allergology."} }
+    { href:"estetica-faciala.html", iconKey:"estetica", ro:{t:"Estetică facială",d:"Curățări, tratamente cu aparatură, dermapen, mezoterapie non-invazivă."}, ru:{t:"Эстетика лица",d:"Чистки, аппаратные процедуры, дермапен, безынъекционная мезотерапия."}, en:{t:"Facial aesthetics",d:"Cleansing, device treatments, dermapen, non-invasive mesotherapy."} },
+    { href:"cosmetologie.html", iconKey:"cosmetologie", ro:{t:"Cosmetologie",d:"Proceduri injectabile: toxină botulinică, fillere, biostimulatoare."}, ru:{t:"Косметология",d:"Инъекционные процедуры: ботулотоксин, филлеры, биостимуляторы."}, en:{t:"Cosmetology",d:"Injectable procedures: botulinum toxin, fillers, biostimulators."} },
+    { href:"epilare-laser.html", iconKey:"epilare", ro:{t:"Epilare laser",d:"Pentru femei și bărbați, pe zone sau în pachete avantajoase."}, ru:{t:"Лазерная эпиляция",d:"Для женщин и мужчин, по зонам или в выгодных пакетах."}, en:{t:"Laser hair removal",d:"For women and men, by area or in value packages."} },
+    { href:"remodelare-corporala.html", iconKey:"remodelare", ro:{t:"Remodelare corporală",d:"Tratamente pentru conturul corpului și fermitatea pielii."}, ru:{t:"Коррекция фигуры",d:"Процедуры для контуров тела и упругости кожи."}, en:{t:"Body contouring",d:"Treatments for body shape and skin firmness."} },
+    { href:"ultrasonografie.html", iconKey:"ultrasonografie", ro:{t:"Ultrasonografie",d:"Investigații ecografice pentru diagnostic precis."}, ru:{t:"УЗИ",d:"Ультразвуковая диагностика для точного обследования."}, en:{t:"Ultrasonography",d:"Ultrasound investigations for precise diagnosis."} },
+    { href:"masaj.html", iconKey:"masaj", ro:{t:"Masaj",d:"Terapeutic, drenaj limfatic, anticelulitic și relaxare."}, ru:{t:"Массаж",d:"Лечебный, лимфодренаж, антицеллюлитный и расслабляющий."}, en:{t:"Massage",d:"Therapeutic, lymphatic drainage, anti-cellulite and relaxing."} },
+    { href:"fizioterapie.html", iconKey:"fizioterapie", ro:{t:"Fizioterapie & reabilitare",d:"Recuperare după traume, dureri cronice și afecțiuni musculo-scheletale."}, ru:{t:"Физиотерапия и реабилитация",d:"Восстановление после травм, при хронической боли и заболеваниях ОДА."}, en:{t:"Physiotherapy & rehab",d:"Recovery after injury, chronic pain and musculoskeletal conditions."} },
+    { href:"laborator.html", iconKey:"laborator", ro:{t:"Investigații de laborator",d:"Hematologie, biochimie, imunologie, biologie moleculară, alergologie."}, ru:{t:"Лабораторные исследования",d:"Гематология, биохимия, иммунология, молекулярная биология, аллергология."}, en:{t:"Laboratory testing",d:"Haematology, biochemistry, immunology, molecular biology, allergology."} }
   ];
 
+  const WHYICONS = {"multi": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"7\" rx=\"1.5\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\" rx=\"1.5\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\" rx=\"1.5\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\" rx=\"1.5\"/></svg>", "spec": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M5 21c0-4 3-7 7-7s7 3 7 7\"/></svg>", "equip": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6a2 2 0 1 0 3 3l6-6a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2z\"/></svg>", "book": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"17\" rx=\"2\"/><path d=\"M3 9h18M8 2v4M16 2v4\"/><path d=\"M9 14l2 2 4-4\"/></svg>"};
   const why = [
-    { icon:"🏥", ro:{t:"Centru multidisciplinar",d:"Estetică, reabilitare și laborator într-un singur loc."}, ru:{t:"Многопрофильный центр",d:"Эстетика, реабилитация и лаборатория в одном месте."}, en:{t:"Multidisciplinary centre",d:"Aesthetics, rehab and lab in one place."} },
-    { icon:"👩‍⚕️", ro:{t:"Specialiști calificați",d:"Echipă cu pregătire și protocoale verificate."}, ru:{t:"Квалифицированные специалисты",d:"Команда с подготовкой и проверенными протоколами."}, en:{t:"Qualified specialists",d:"A team with training and verified protocols."} },
-    { icon:"🔧", ro:{t:"Aparatură profesională",d:"Tehnologie modernă pentru rezultate sigure."}, ru:{t:"Профессиональное оборудование",d:"Современная техника для надёжных результатов."}, en:{t:"Professional equipment",d:"Modern technology for safe results."} },
-    { icon:"📅", ro:{t:"Programare online",d:"Rezervă rapid, direct de pe telefon."}, ru:{t:"Онлайн-запись",d:"Быстрое бронирование прямо с телефона."}, en:{t:"Online booking",d:"Book quickly, right from your phone."} }
+    { iconKey:"multi", ro:{t:"Centru multidisciplinar",d:"Estetică, reabilitare și laborator într-un singur loc."}, ru:{t:"Многопрофильный центр",d:"Эстетика, реабилитация и лаборатория в одном месте."}, en:{t:"Multidisciplinary centre",d:"Aesthetics, rehab and lab in one place."} },
+    { iconKey:"spec", ro:{t:"Specialiști calificați",d:"Echipă cu pregătire și protocoale verificate."}, ru:{t:"Квалифицированные специалисты",d:"Команда с подготовкой и проверенными протоколами."}, en:{t:"Qualified specialists",d:"A team with training and verified protocols."} },
+    { iconKey:"equip", ro:{t:"Aparatură profesională",d:"Tehnologie modernă pentru rezultate sigure."}, ru:{t:"Профессиональное оборудование",d:"Современная техника для надёжных результатов."}, en:{t:"Professional equipment",d:"Modern technology for safe results."} },
+    { iconKey:"book", ro:{t:"Programare online",d:"Rezervă rapid, direct de pe telefon."}, ru:{t:"Онлайн-запись",d:"Быстрое бронирование прямо с телефона."}, en:{t:"Online booking",d:"Book quickly, right from your phone."} }
   ];
 
   let lang = 'ro';
@@ -440,14 +444,14 @@
   function render() {
     document.getElementById('svcGrid').innerHTML = services.map(s => `
       <a href="${s.href}" class="svc-card">
-        <div class="svc-icon">${s.icon}</div>
+        <div class="svc-icon">${ICONS[s.iconKey]||''}</div>
         <h3>${s[lang].t}</h3>
         <p>${s[lang].d}</p>
-        <span class="svc-link">${more[lang]} →</span>
+        <span class="svc-link">${more[lang]} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;vertical-align:middle"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>`).join('');
     document.getElementById('whyGrid').innerHTML = why.map(w => `
       <div class="why-item">
-        <div class="why-icon">${w.icon}</div>
+        <div class="why-icon">${WHYICONS[w.iconKey]||''}</div>
         <div><h3>${w[lang].t}</h3><p>${w[lang].d}</p></div>
       </div>`).join('');
   }
