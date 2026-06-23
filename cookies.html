@@ -4,10 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Politica de cookie-uri — SATOS Medical</title>
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="icon" href="favicon.ico">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-
 <meta name="description" content="Politica de cookie-uri SATOS Medical SRL — ce sunt cookie-urile, cum le folosim și cum le poți gestiona.">
 <style>
   :root { --navy:#0E2350; --teal:#17A9BC; --navy-soft:#1a3470; --ink:#0c1a38; --paper:#fff; --mist:#f4f7fa; --line:#e1e8f0; --muted:#5a6b85; --teal-soft:#e8f6f8; }
@@ -46,6 +42,29 @@
   [data-lang].show { display:block; }
   span[data-lang] { display:none; }
   span[data-lang].show { display:inline; }
+
+  /* ===== MOBILE / ANDROID FIXES ===== */
+  html, body { overflow-x: hidden; max-width: 100%; }
+  *, *::before, *::after { max-width: 100%; }
+  img, svg { max-width: 100%; height: auto; }
+  /* Phone label hidden on very narrow screens to prevent header overflow */
+  @media (max-width: 479px) {
+    .tel-btn .label { display: none; }
+    .tel-btn { padding: 8px 8px; font-size: 18px; }
+    .nav { gap: 8px; }
+    .header-actions { gap: 6px; }
+    .lang button { padding: 5px 7px; font-size: 11px; }
+    .logo { font-size: 15px; gap: 7px; }
+    .logo-mark-img { height: 30px; }
+    .wrap { padding: 0 16px; }
+    .burger { padding: 6px; }
+  }
+  @media (max-width: 360px) {
+    .logo .logo-text { font-size: 14px; }
+    .lang { padding: 2px; }
+    .lang button { padding: 4px 6px; }
+  }
+
 </style>
 </head>
 <body>
